@@ -69,7 +69,7 @@
         k = k + 1;
 
         fprintf('Iteration %d \na = %f \n', k, a);
-        fprintf('g(a) = %f\ng"(a) = %f \n\n', g(a), dev_g(a));
+        fprintf('g(a) = %f\n\n', g(a));
         % fprintf('g-calculations: %d \ng"-calculations: %d\n\n', k, n_dev_g);
 
         minX_e = a;
@@ -84,7 +84,7 @@
       end
 
       k = k + 1;
-      
+
       fprintf('Iteration %d \na = %f \n', k, a);
       % fprintf('g-calculations: %d \ng"-calculations: %d\n\n', k, n_dev_g);
       fprintf('g(a) = %f\ng"(a) = %f \n\n', g(a), dev_g(a));
