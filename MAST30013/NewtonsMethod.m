@@ -51,7 +51,7 @@
 
     end
 
-    % function
+    % functions
     syms x
     f = str2func(['@(x)', objFunc]);
     g = matlabFunction(diff(f(x)));
@@ -59,15 +59,11 @@
     a = init;
 
     % counters
-    k = 1;
-    n_dev_g = 1;
-
-    fprintf('Iteration %d \na = %f \n', k, a);
-    fprintf('g(a) = %f\ng"(a) = %f \n\n', g(a), dev_g(a));
-    % fprintf('g-calculations: %d \ng"-calculations: %d\n\n', k, n_dev_g);
+    k = 0;
+    n_dev_g = 0;
 
     while (dev_g(a) >= epln)
-      a = a - (g(a)/dev_g(a));
+      n_dev_g = n_dev_g + 1;
 
       if (abs(g(a)) < epln)
         k = k + 1;
@@ -88,18 +84,24 @@
       end
 
       k = k + 1;
-      n_dev_g = n_dev_g + 1;
-
+      
       fprintf('Iteration %d \na = %f \n', k, a);
-      fprintf('g(a) = %f\ng"(a) = %f \n\n', g(a), dev_g(a));
       % fprintf('g-calculations: %d \ng"-calculations: %d\n\n', k, n_dev_g);
+      fprintf('g(a) = %f\ng"(a) = %f \n\n', g(a), dev_g(a));
+
+      a = a - (g(a)/dev_g(a));
 
     end
 
-    minX_e = NaN;
-    devX_e = NaN;
-    fprintf('g"(a) < epsilon but |g(a)| > epsilon, \n');
-    fprintf('therefore the estimate is diverging. \n');
-    fprintf('Try another initial point please :)');
+    if (dev_g(a) < epln)
+      % the estimate is diverging away :(
+
+      minX_e = NaN;
+      devX_e = NaN;
+      fprintf('g"(a) < epsilon but |g(a)| > epsilon, \n');
+      fprintf('therefore the estimate is diverging. \n');
+      fprintf('Try another initial point please :)');
+
+    end
 
  end
