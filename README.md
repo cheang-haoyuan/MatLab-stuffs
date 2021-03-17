@@ -1,3 +1,4 @@
 # MathMaths
 
-Usually MATLAB stuffs, some LateX too. Someday. or not.
+Repo for uni assignments :) will update periodically.
+May someday include personal works, may not.
